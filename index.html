@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ただいま勉強中</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <style type="text/css">
+        textarea {
+            resize: none;
+            white-space: pre;
+            width: 100%;
+            height: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: radial-gradient(#a0a0a0, #303030);
+            background-size: 110% auto;
+            margin: 0px;
+            /* ページ全体のmargin */
+            padding: 0px;
+            /* ページ全体のpadding */
+            text-align: center;
+            /* 下記のautoに未対応用のセンタリング */
+        }
+
+        #output {
+            width: 480px;
+            height: 400px;
+            line-height: 1.5em;
+            background-color: white;
+            border: 2px solid gray;
+            box-shadow: 2px 2px 4px gray;
+        }
+
+        #outputtext {
+            width: 600px;
+            height: 400px;
+            line-height: 1.5em;
+            background-color: white;
+            border: 2px solid gray;
+            box-shadow: 2px 2px 4px gray;
+        }
+
+        #img {
+            width: 500px;
+        }
+
+        #input_name {
+            width: 240px;
+            height: 20px;
+            box-shadow: 2px 2px 4px gray;
+        }
+
+        #input_description {
+            width: 240px;
+            height: 20px;
+            box-shadow: 2px 2px 4px gray;
+        }
+
+        #convert {
+            width: 30vw;
+            height: 12vw;
+            padding: 0.25em 0.5em;
+            text-decoration: none;
+            color: #FFF;
+            background: #808080;
+            /*背景色*/
+            border-bottom: solid 2px #a0a0a0;
+            /*少し濃い目の色に*/
+            border-radius: 4px;
+            /*角の丸み*/
+            box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+            font-weight: bold;
+        }
+
+        #convert:active {
+            box-shadow: outset 0 2px 0 rgba(255, 255, 255, 0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+        }
+
+        #convert_div {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>勉強中やでぇ</h1>
+    <div id="convert_div">
+        <input type="button" id="convert" onclick="manifest();" value="生成＆コピー" />
+    </div>
+    <form id="fm" name="fm">
+        <div>
+            <span id="input_div">
+                <input type="text" id="input_name" placeholder="manifestの名前">
+                <input type="text" id="input_description" placeholder="アドオンの説明">
+            </span>
+        </div>
+        <div id="output_div">
+            <p id="copy_text">↓コピーして使ってください</p>
+            <textarea id="output"></textarea>
+        </div>
+    </form>
+    <form id="testuplode">
+        <input name="myfile" type="file" />
+    </form>
+</body>
+
+</html>
