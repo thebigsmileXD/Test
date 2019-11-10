@@ -1,0 +1,163 @@
+ textarea {
+     resize: none;
+     white-space: pre;
+     width: 100%;
+     height: 100%;
+ }
+ 
+ img {
+     width: 100%;
+     height: 100%;
+ }
+ 
+ body {
+     background: radial-gradient(#a0a0a0, #303030);
+     background-size: 110% auto;
+     margin: 0px;
+     /* ページ全体のmargin */
+     padding: 0px;
+     /* ページ全体のpadding */
+     text-align: center;
+     /* 下記のautoに未対応用のセンタリング */
+ }
+ 
+ #output {
+     width: 480px;
+     height: 400px;
+     line-height: 1.5em;
+     background-color: white;
+     border: 2px solid gray;
+     box-shadow: 2px 2px 4px gray;
+ }
+ 
+ #outputtext {
+     width: 600px;
+     height: 400px;
+     line-height: 1.5em;
+     background-color: white;
+     border: 2px solid gray;
+     box-shadow: 2px 2px 4px gray;
+ }
+ 
+ #img {
+     width: 500px;
+ }
+ 
+ #input_name {
+     width: 240px;
+     height: 20px;
+     box-shadow: 2px 2px 4px gray;
+ }
+ 
+ #input_description {
+     width: 240px;
+     height: 20px;
+     box-shadow: 2px 2px 4px gray;
+ }
+ 
+ #convert {
+     width: 30vw;
+     height: 12vw;
+     margin: 1em 0em 1em;
+     padding: 0.25em 0.5em;
+     text-decoration: none;
+     color: #FFF;
+     background: #808080;
+     /*背景色*/
+     border-bottom: solid 2px #a0a0a0;
+     /*少し濃い目の色に*/
+     border-radius: 4px;
+     /*角の丸み*/
+     box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+     font-weight: bold;
+ }
+ 
+ #convert:active {
+     box-shadow: outset 0 2px 0 rgba(255, 255, 255, 0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+ }
+ 
+ #convert_div {
+     text-align: center;
+ }
+ 
+ #befor-loading {
+     display: none;
+     position: fixed;
+     width: 100%;
+     height: 100%;
+     top: 0px;
+     left: 0px;
+     background: #000;
+     z-index: 1;
+ }
+ 
+ #loader {
+     display: none;
+     position: fixed;
+     top: 50%;
+     left: 50%;
+     width: 200px;
+     height: 200px;
+     margin-top: -100px;
+     margin-left: -100px;
+     text-align: center;
+     color: #fff;
+     z-index: 2;
+ }
+ 
+ header {
+     width: 80%;
+     margin: 0 auto;
+ }
+ 
+ h1 {
+     padding: 20px;
+ }
+ 
+ .globalnav-wrap {
+     font-size: 16px;
+     color: #fff;
+     background: #333;
+     display: flex;
+     justify-content: space-between;
+ }
+ 
+ .globalnav .dropdown-btn {
+     position: relative;
+     display: inline-block;
+     padding: 20px;
+     cursor: pointer;
+ }
+ 
+ .globalnav .dropdown-btn:hover {
+     background: #666;
+ }
+ 
+ .globalnav .dropdown {
+     z-index: 1000;
+     background: #666;
+     position: absolute;
+     left: 0;
+     top: 55px;
+     width: 200px;
+     padding: 10px 20px;
+     display: none;
+ }
+ 
+ .globalnav .dropdown li {
+     display: inline-block;
+     margin: 10px 0;
+ }
+ 
+ .globalnav .dropdown li a {
+     color: #fff;
+ }
+ 
+ .globalnav .nav-button-wrap,
+ .globalnav .open {
+     display: block;
+ }
+ 
+ .globalnav .close {
+     display: block;
+ }
