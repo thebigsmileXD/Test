@@ -51,6 +51,23 @@ $(function () {
   })
 });
 
+$(function () {
+  var h = $(window).height();
+
+  $('#after-loading').css('display', 'none');
+  $('#befor-loading ,#loader').height(h).css('display', 'block');
+});
+//1秒たったら強制的にロード画面を非表示
+$(function () {
+  setTimeout('stopload()', 1000);
+});
+
+function stopload() {
+  $('#after-loading').css('display', 'block');
+  $('#befor-loading').delay(900).fadeOut(800);
+  $('#loader').delay(600).fadeOut(300);
+}
+
 function uuid() {
   var uuid = "", i, random;
   for (i = 0; i < 32; i++) {
