@@ -65,6 +65,28 @@ $(function() {
                     //srcに画像をぶちこむ
                 document.querySelector("img").src = reader.result;
             });
+        } else if (result.name.slice(-12) == ".mcstructure") {
+            reader.onload = function(evt) {
+                var allData = evt.target.result; //ファイル内容を全て取得
+                var bin = "";
+                for (var i = 0; i < allData.length; i++) {
+                    var s = allData.charCodeAt(i).toString(16); //16進数で表示
+                    if (s.length == 1) s = "0" + s; //桁数を二桁に揃える
+                    if (i % 16 == 15) {
+                        bin += s + "\n"; //16個目で改行
+                    } else {
+                        bin += s + " ";
+                    }
+                }
+                //要素削除
+                $("#outputtext").remove();
+                $("#img").remove();
+                //要素追加
+                $('#testuplode').append('<textarea id="outputtext" name="test" cols="50" rows="50"></textarea>');
+                //textcontentに代入
+                form.test.textContent = bin;
+            }
+            reader.readAsBinaryString(result);
         } else {
             //読み込んだファイルの中身を取得する(text)
             reader.readAsText(result);
@@ -79,8 +101,9 @@ $(function() {
                 form.test.textContent = reader.result;
             });
         }
+
         //ファイルの名前をコンソールへ
-        console.log(result.name);
+        //console.log(result.name);
     })
 });
 
