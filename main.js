@@ -70,12 +70,61 @@ $(function() {
                 var allData = evt.target.result; //ファイル内容を全て取得
                 var bin = "";
                 for (var i = 0; i < allData.length; i++) {
-                    var s = allData.charCodeAt(i).toString(16); //16進数で表示
-                    if (s.length == 1) s = "0" + s; //桁数を二桁に揃える
-                    if (i % 16 == 15) {
-                        bin += s + "\n"; //16個目で改行
-                    } else {
-                        bin += s + " ";
+                    var s = allData.charCodeAt(i); //16進数で表示
+                    if (s == 10) {
+                        tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
+                        var tagname = [];
+                        for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
+                            try {
+                                tagname.push(decodeURI("%" + allData.charCodeAt(i + 2 + tagname_loop).toString(16)));
+                            } catch (e) {}
+                        }
+                        let tagname_result = tagname.join(``);
+                        console.log(tagname_result);
+                        i += (2 + tagname_count);
+                        continue;
+                    }
+                    if (s == 8) {
+                        tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
+                        var tagname = [];
+                        for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
+                            try {
+                                tagname.push(decodeURI("%" + allData.charCodeAt(i + 2 + tagname_loop).toString(16)));
+                            } catch (e) {}
+                        }
+                        let tagname_result = tagname.join(``);
+                        value_count = allData.charCodeAt(i + 2 + tagname_count + 2) * 16 + allData.charCodeAt(i + 1 + tagname_count + 2);
+                        var value = [];
+                        for (value_loop = 1; value_loop <= value_count; value_loop++) {
+                            try {
+                                value.push(decodeURI("%" + allData.charCodeAt(i + 2 + value_loop + tagname_count + 2).toString(16)));
+                            } catch (e) {}
+                        }
+                        let value_result = value.join(``);
+                        console.log("String:name=" + tagname_result + " value=" + value_result);
+                        i += (2 + tagname_count + 2 + value_count);
+                        continue;
+                    }
+                    if (s == 3) {
+                        tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
+                        var tagname = [];
+                        for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
+                            try {
+                                tagname.push(decodeURI("%" + allData.charCodeAt(i + 2 + tagname_loop).toString(16)));
+                            } catch (e) {}
+                        }
+                        let tagname_result = tagname.join(``);
+                        value_count = 4;
+                        var value = [];
+                        for (value_loop = 1; value_loop <= value_count; value_loop++) {
+                            try {
+                                value.push(allData.charCodeAt(i + 2 + value_loop + tagname_count + 2).toString());
+                            } catch (e) {}
+                        }
+                        let value_result = value.join(``);
+                        console.log("String:name=" + tagname_result + " value=" + value_result);
+                        i += (2 + tagname_count + value_count);
+                        continue;
                     }
                 }
                 //要素削除
