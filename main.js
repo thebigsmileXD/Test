@@ -122,7 +122,7 @@ $(function() {
                             } catch (e) {}
                         }
                         let value_result = value.join(``);
-                        console.log("String:name=" + tagname_result + " value=" + value_result);
+                        console.log("Int:name=" + tagname_result + " value=" + value_result);
                         i += (2 + tagname_count + value_count);
                         continue;
                     }
