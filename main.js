@@ -79,7 +79,7 @@ $(function() {
                                 tagname.push(decodeURI("%" + (`00` + allData.charCodeAt(i + 2 + tagname_loop).toString(16)).slice(-2)));
                             } catch (e) {}
                         }
-                        let tagname_result = tagname.join(``);
+                        let tagname_result = tagname.join(``).replace(/%%/g, "%");
                         console.log("Compound:name=" + tagname_result);
                         i += (2 + tagname_count);
                         continue;
@@ -92,7 +92,7 @@ $(function() {
                                 tagname.push(decodeURI("%" + (`00` + allData.charCodeAt(i + 2 + tagname_loop).toString(16)).slice(-2)));
                             } catch (e) {}
                         }
-                        let tagname_result = tagname.join(``);
+                        let tagname_result = tagname.join(``).replace(/%%/g, "%");
                         value_count = allData.charCodeAt(i + 2 + tagname_count + 2) * 16 + allData.charCodeAt(i + 1 + tagname_count + 2);
                         var value = [];
                         for (value_loop = 1; value_loop <= value_count; value_loop++) {
@@ -100,7 +100,7 @@ $(function() {
                                 value.push(decodeURI("%" + (`00` + allData.charCodeAt(i + 2 + value_loop + tagname_count + 2).toString(16)).slice(-2)));
                             } catch (e) {}
                         }
-                        let value_result = value.join(``);
+                        let value_result = value.join(``).replace(/%%/g, "%");
                         console.log("String:name=\"" + tagname_result + " value=\"" + value_result + "\"");
                         i += (2 + tagname_count + 2 + value_count);
                         continue;
@@ -113,7 +113,7 @@ $(function() {
                                 tagname.push(decodeURI("%" + (`00` + allData.charCodeAt(i + 2 + tagname_loop).toString(16)).slice(-2)));
                             } catch (e) {}
                         }
-                        let tagname_result = tagname.join(``);
+                        let tagname_result = tagname.join(``).replace(/%%/g, "%");
                         value_count = 1;
                         var value = [];
                         for (value_loop = value_count; value_loop >= 1; value_loop--) {
@@ -134,7 +134,7 @@ $(function() {
                                 tagname.push(decodeURI("%" + (`00` + allData.charCodeAt(i + 2 + tagname_loop).toString(16)).slice(-2)));
                             } catch (e) {}
                         }
-                        let tagname_result = tagname.join(``);
+                        let tagname_result = tagname.join(``).replace(/%%/g, "%");
                         value_count = 2;
                         var value = [];
                         for (value_loop = value_count; value_loop >= 1; value_loop--) {
@@ -155,7 +155,7 @@ $(function() {
                                 tagname.push(decodeURI("%" + (`00` + allData.charCodeAt(i + 2 + tagname_loop).toString(16)).slice(-2)));
                             } catch (e) {}
                         }
-                        let tagname_result = tagname.join(``);
+                        let tagname_result = tagname.join(``).replace(/%%/g, "%");
                         value_count = 4;
                         var value = [];
                         for (value_loop = value_count; value_loop >= 1; value_loop--) {
@@ -176,7 +176,7 @@ $(function() {
                                 tagname.push(decodeURI("%" + (`00` + allData.charCodeAt(i + 2 + tagname_loop).toString(16)).slice(-2)));
                             } catch (e) {}
                         }
-                        let tagname_result = tagname.join(``);
+                        let tagname_result = tagname.join(``).replace(/%%/g, "%");
                         value_count = 8;
                         var value = [];
                         for (value_loop = value_count; value_loop >= 1; value_loop--) {
