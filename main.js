@@ -97,7 +97,7 @@ $(function() {
                         var value = [];
                         for (value_loop = 1; value_loop <= value_count; value_loop++) {
                             try {
-                                value.push(decodeURI("%" + allData.charCodeAt(i + 2 + value_loop + tagname_count + 2).toString(16)));
+                                value.push(decodeURI("%" + (`00` + allData.charCodeAt(i + 2 + value_loop + tagname_count + 2).toString(16)).slice(-2)));
                             } catch (e) {}
                         }
                         let value_result = value.join(``);
