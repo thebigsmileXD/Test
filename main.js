@@ -76,7 +76,7 @@ $(function() {
                         var tagname = [];
                         for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
                             try {
-                                tagname.push(decodeURI("%" + (`00` + allData.charCodeAt(i + 2 + tagname_loop).toString(16)).slice(-2)));
+                                tagname.push(String.fromCharCode(allData.charCodeAt(i + 2 + tagname_loop)));
                             } catch (e) {}
                         }
                         let tagname_result = tagname.join(``);
@@ -84,12 +84,16 @@ $(function() {
                         i += (2 + tagname_count);
                         continue;
                     }
+                    if (s == 0) {
+                        console.log("End");
+                        continue;
+                    }
                     if (s == 8) {
                         tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
                         var tagname = [];
                         for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
                             try {
-                                tagname.push(decodeURI("%" + (`00` + allData.charCodeAt(i + 2 + tagname_loop).toString(16)).slice(-2)));
+                                tagname.push(String.fromCharCode(allData.charCodeAt(i + 2 + tagname_loop)));
                             } catch (e) {}
                         }
                         let tagname_result = tagname.join(``);
@@ -97,7 +101,7 @@ $(function() {
                         var value = [];
                         for (value_loop = 1; value_loop <= value_count; value_loop++) {
                             try {
-                                value.push(decodeURI("%" + (`00` + allData.charCodeAt(i + 2 + value_loop + tagname_count + 2).toString(16)).slice(-2)));
+                                value.push(String.fromCharCode(allData.charCodeAt(i + 2 + value_loop + tagname_count + 2)));
                             } catch (e) {}
                         }
                         let value_result = value.join(``);
@@ -110,7 +114,7 @@ $(function() {
                         var tagname = [];
                         for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
                             try {
-                                tagname.push(decodeURI("%" + (`00` + allData.charCodeAt(i + 2 + tagname_loop).toString(16)).slice(-2)));
+                                tagname.push(String.fromCharCode(allData.charCodeAt(i + 2 + tagname_loop)));
                             } catch (e) {}
                         }
                         let tagname_result = tagname.join(``);
@@ -131,7 +135,7 @@ $(function() {
                         var tagname = [];
                         for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
                             try {
-                                tagname.push(decodeURI("%" + (`00` + allData.charCodeAt(i + 2 + tagname_loop).toString(16)).slice(-2)));
+                                tagname.push(String.fromCharCode(allData.charCodeAt(i + 2 + tagname_loop)));
                             } catch (e) {}
                         }
                         let tagname_result = tagname.join(``);
@@ -152,7 +156,7 @@ $(function() {
                         var tagname = [];
                         for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
                             try {
-                                tagname.push(decodeURI("%" + (`00` + allData.charCodeAt(i + 2 + tagname_loop).toString(16)).slice(-2)));
+                                tagname.push(String.fromCharCode(allData.charCodeAt(i + 2 + tagname_loop)));
                             } catch (e) {}
                         }
                         let tagname_result = tagname.join(``);
@@ -173,7 +177,7 @@ $(function() {
                         var tagname = [];
                         for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
                             try {
-                                tagname.push(decodeURI("%" + (`00` + allData.charCodeAt(i + 2 + tagname_loop).toString(16)).slice(-2)));
+                                tagname.push(String.fromCharCode(allData.charCodeAt(i + 2 + tagname_loop)));
                             } catch (e) {}
                         }
                         let tagname_result = tagname.join(``);
