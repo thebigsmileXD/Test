@@ -8,7 +8,7 @@ function manifest() {
     let copyTarget = document.getElementById("output");
     copyTarget.select();
     document.execCommand("Copy");
-    alert("コピーしました└(՞ةڼ◔)」");
+    alert("コピーしました");
 }
 
 // ドロップダウンメニュー
