@@ -70,16 +70,11 @@ $(function() {
                 var allData = evt.target.result; //ファイル内容を全て取得
                 var bin = "";
                 for (var i = 0; i < allData.length; i++) {
+
                     var s = allData.charCodeAt(i); //16進数で表示
                     if (s == 10) {
-                        tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
-                        var tagname = [];
-                        for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
-                            try {
-                                tagname.push(String.fromCharCode(allData.charCodeAt(i + 2 + tagname_loop)));
-                            } catch (e) {}
-                        }
-                        let tagname_result = tagname.join(``);
+                        let tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
+                        let tagname_result = tagname(i, tagname_count, allData);
                         console.log("Compound:name=" + tagname_result);
                         i += (2 + tagname_count);
                         continue;
@@ -89,20 +84,12 @@ $(function() {
                         continue;
                     }
                     if (s == 8) {
-                        tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
-                        var tagname = [];
-                        for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
-                            try {
-                                tagname.push(String.fromCharCode(allData.charCodeAt(i + 2 + tagname_loop)));
-                            } catch (e) {}
-                        }
-                        let tagname_result = tagname.join(``);
-                        value_count = allData.charCodeAt(i + 2 + tagname_count + 2) * 16 + allData.charCodeAt(i + 1 + tagname_count + 2);
-                        var value = [];
+                        let tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
+                        let tagname_result = tagname(i, tagname_count, allData);
+                        let value_count = allData.charCodeAt(i + 2 + tagname_count + 2) * 16 + allData.charCodeAt(i + 1 + tagname_count + 2);
+                        let value = [];
                         for (value_loop = 1; value_loop <= value_count; value_loop++) {
-                            try {
-                                value.push(String.fromCharCode(allData.charCodeAt(i + 2 + value_loop + tagname_count + 2)));
-                            } catch (e) {}
+                            value.push(String.fromCharCode(allData.charCodeAt(i + 2 + value_loop + tagname_count + 2)));
                         }
                         let value_result = value.join(``);
                         console.log("String:name=\"" + tagname_result + " value=\"" + value_result + "\"");
@@ -110,89 +97,87 @@ $(function() {
                         continue;
                     }
                     if (s == 1) {
-                        tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
-                        var tagname = [];
-                        for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
-                            try {
-                                tagname.push(String.fromCharCode(allData.charCodeAt(i + 2 + tagname_loop)));
-                            } catch (e) {}
-                        }
-                        let tagname_result = tagname.join(``);
-                        value_count = 1;
-                        var value = [];
-                        for (value_loop = value_count; value_loop >= 1; value_loop--) {
-                            try {
-                                value.push((`00` + allData.charCodeAt(i + value_loop + tagname_count + 2).toString(16)).slice(-2));
-                            } catch (e) {}
-                        }
-                        let value_result = parseInt(value.join(``), 16);
+                        let tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
+                        let tagname_result = tagname(i, tagname_count, allData);
+                        let value_count = 1;
+                        let value_result = value(i, value_count, tagname_count, allData);
                         console.log("Byte:name=\"" + tagname_result + "\" value=" + value_result);
                         i += (2 + tagname_count + value_count);
                         continue;
                     }
                     if (s == 2) {
-                        tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
-                        var tagname = [];
-                        for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
-                            try {
-                                tagname.push(String.fromCharCode(allData.charCodeAt(i + 2 + tagname_loop)));
-                            } catch (e) {}
-                        }
-                        let tagname_result = tagname.join(``);
-                        value_count = 2;
-                        var value = [];
-                        for (value_loop = value_count; value_loop >= 1; value_loop--) {
-                            try {
-                                value.push((`00` + allData.charCodeAt(i + value_loop + tagname_count + 2).toString(16)).slice(-2));
-                            } catch (e) {}
-                        }
-                        let value_result = parseInt(value.join(``), 16);
+                        let tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
+                        let tagname_result = tagname(i, tagname_count, allData);
+                        let value_count = 2;
+                        let value_result = value(i, value_count, tagname_count, allData);
                         console.log("Short:name=\"" + tagname_result + "\" value=" + value_result);
                         i += (2 + tagname_count + value_count);
                         continue;
                     }
                     if (s == 3) {
-                        tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
-                        var tagname = [];
-                        for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
-                            try {
-                                tagname.push(String.fromCharCode(allData.charCodeAt(i + 2 + tagname_loop)));
-                            } catch (e) {}
-                        }
-                        let tagname_result = tagname.join(``);
-                        value_count = 4;
-                        var value = [];
-                        for (value_loop = value_count; value_loop >= 1; value_loop--) {
-                            try {
-                                value.push((`00` + allData.charCodeAt(i + value_loop + tagname_count + 2).toString(16)).slice(-2));
-                            } catch (e) {}
-                        }
-                        let value_result = parseInt(value.join(``), 16);
+                        let tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
+                        let tagname_result = tagname(i, tagname_count, allData);
+                        let value_count = 4;
+                        let value_result = value(i, value_count, tagname_count, allData);
                         console.log("Int:name=\"" + tagname_result + "\" value=" + value_result);
                         i += (2 + tagname_count + value_count);
                         continue;
                     }
                     if (s == 4) {
-                        tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
-                        var tagname = [];
-                        for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
-                            try {
-                                tagname.push(String.fromCharCode(allData.charCodeAt(i + 2 + tagname_loop)));
-                            } catch (e) {}
-                        }
-                        let tagname_result = tagname.join(``);
-                        value_count = 8;
-                        var value = [];
-                        for (value_loop = value_count; value_loop >= 1; value_loop--) {
-                            try {
-                                value.push((`00` + allData.charCodeAt(i + value_loop + tagname_count + 2).toString(16)).slice(-2));
-                            } catch (e) {}
-                        }
-                        let value_result = parseInt(value.join(``), 16);
+                        let tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
+                        let tagname_result = tagname(i, tagname_count, allData);
+                        let value_count = 8;
+                        let value_result = value(i, value_count, tagname_count, allData);
                         console.log("Long:name=\"" + tagname_result + "\" value=" + value_result);
                         i += (2 + tagname_count + value_count);
                         continue;
                     }
+                    if (s == 5) {
+                        let tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
+                        let tagname_result = tagname(i, tagname_count, allData);
+                        let value_count = 4;
+                        let value = [];
+                        for (value_loop = value_count; value_loop >= 1; value_loop--) {
+                            value.push((`00000000` + allData.charCodeAt(i + value_loop + tagname_count + 2).toString(2)).slice(-8));
+                        }
+                        let value_result = value.join(``);
+                        let value_sign = value_result.slice(0, 1);
+                        let value_exponent = value_result.slice(1, 9);
+                        let value_fraction = value_result.slice(9);
+                        value_result = ((-1) ** value_sign) * parseInt("1" + value_fraction, 2) * (2 ** -23) * (2 ** (parseInt(value_exponent, 2) - 127));
+                        if (value_result <= 1.0 * (2 ** -127)) {
+                            value_result = -0.0;
+                        }
+                        console.log("Float:name=\"" + tagname_result + "\" value=" + value_result);
+                        i += (2 + tagname_count + value_count);
+                        continue;
+                    }
+                    if (s == 6) {
+                        let tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
+                        let tagname_result = tagname(i, tagname_count, allData);
+                        let value_count = 8;
+                        let value = [];
+                        for (value_loop = value_count; value_loop >= 1; value_loop--) {
+                            value.push((`00000000` + allData.charCodeAt(i + value_loop + tagname_count + 2).toString(2)).slice(-8));
+                        }
+                        let value_result = value.join(``);
+                        let value_sign = value_result.slice(0, 1);
+                        let value_exponent = value_result.slice(1, 12);
+                        let value_fraction = value_result.slice(12);
+                        value_result = ((-1) ** value_sign) * parseInt("1" + value_fraction, 2) * (2 ** -52) * (2 ** (parseInt(value_exponent, 2) - 127));
+                        if (value_result <= 1.0 * (2 ** -1023)) {
+                            value_result = -0.0;
+                        }
+                        console.log("Double:name=\"" + tagname_result + "\" value=" + value_result);
+                        i += (2 + tagname_count + value_count);
+                        continue;
+                    }
+                    /*if (s == 9) {
+                        let tagname_count = allData.charCodeAt(i + 2) * 16 + allData.charCodeAt(i + 1);
+                        let tagname_result = tagname(i,tagname_count);
+                        let value_type = allData.charCodeAt(i + 2 + 1 + tagname_count);
+
+                    }*/
                 }
                 //要素削除
                 $("#outputtext").remove();
@@ -252,4 +237,21 @@ function uuid() {
         uuid += (i == 12 ? 4 : (i == 16 ? (random & 3 | 8) : random)).toString(16);
     }
     return uuid;
+}
+
+function tagname(i, tagname_count, allData) {
+    let tagname = [];
+    for (tagname_loop = 1; tagname_loop <= tagname_count; tagname_loop++) {
+        tagname.push(String.fromCharCode(allData.charCodeAt(i + 2 + tagname_loop)));
+    }
+    let tagname_result = tagname.join(``);
+    return tagname_result;
+} //簡略化のためのfunction その1
+function value(i, value_count, tagname_count, allData) {
+    let value = [];
+    for (value_loop = value_count; value_loop >= 1; value_loop--) {
+        value.push((`00` + allData.charCodeAt(i + value_loop + tagname_count + 2).toString(16)).slice(-2));
+    }
+    let value_result = parseInt(value.join(``), 16);
+    return value_result;
 }
