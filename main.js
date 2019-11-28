@@ -10,14 +10,7 @@ function manifest() {
     document.execCommand("Copy");
     alert("コピーしました");
 }
-//ポート受信テスト
-$.post('https://rom314.github.io/test/', 'name=太郎')
 
-.done(function(data) {
-
-    console.log(data.form);
-
-})
 
 // ドロップダウンメニュー
 $(function() {
